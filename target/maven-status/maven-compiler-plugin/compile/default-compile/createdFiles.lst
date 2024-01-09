@@ -1,0 +1,11 @@
+com\app\measurement\measurement\MeasurementRegistrationRequest.class
+com\app\measurement\measurement\MeasurementRowMapper.class
+com\app\measurement\exceptions\ResourceNotFoundException.class
+com\app\measurement\measurement\Measurement.class
+com\app\measurement\AccessService\MeasurementJDBCDataAccessService.class
+com\app\measurement\DAO\MeasurementDAO.class
+com\app\measurement\DTO\MeasurementDTOMapper.class
+com\app\measurement\controllers\MeasurementController.class
+com\app\measurement\services\MeasurementService.class
+com\app\measurement\DTO\MeasurementDTO.class
+com\app\measurement\Main.class
