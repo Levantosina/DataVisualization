@@ -1,6 +1,6 @@
 package com.app.measurement.DTO;
 
-import com.app.measurement.measurements.Measurement;
+import com.app.measurement.measurement.Measurement;
 import org.springframework.stereotype.Service;
 
 import java.util.function.Function;

@@ -4,6 +4,9 @@ import com.app.measurement.DAO.MeasurementDAO;
 import com.app.measurement.DTO.MeasurementDTO;
 import com.app.measurement.DTO.MeasurementDTOMapper;
 import com.app.measurement.exceptions.ResourceNotFoundException;
+import com.app.measurement.measurement.Measurement;
+import com.app.measurement.measurement.MeasurementRegistrationRequest;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
@@ -16,10 +19,12 @@ import java.util.stream.Collectors;
 @Service
 public class MeasurementService {
 
-    private final MeasurementDAO measurementDAO;
+
+
+ private final MeasurementDAO measurementDAO;
     private final MeasurementDTOMapper measurementDTOMapper;
 
-    public MeasurementService(@Qualifier("measurementJdbc")MeasurementDAO measurementDAO, MeasurementDTOMapper measurementDTOMapper) {
+    public MeasurementService(MeasurementDAO measurementDAO, MeasurementDTOMapper measurementDTOMapper) {
         this.measurementDAO = measurementDAO;
         this.measurementDTOMapper = measurementDTOMapper;
     }
@@ -38,5 +43,14 @@ public class MeasurementService {
                         ()->new ResourceNotFoundException(
                                 "Measurement with id [%s] not found".
                                         formatted(id)));
+    }
+
+    public void addMeasurement(MeasurementRegistrationRequest request) {
+
+        Measurement measurement=new Measurement(
+                request.voltage(),
+                request.current());
+        measurementDAO.insertMeasurement(measurement);
+
     }
 }

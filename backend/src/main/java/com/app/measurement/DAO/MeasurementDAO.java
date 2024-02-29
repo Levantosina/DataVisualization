@@ -1,6 +1,6 @@
 package com.app.measurement.DAO;
 
-import com.app.measurement.measurements.Measurement;
+import com.app.measurement.measurement.Measurement;
 
 import java.util.List;
 import java.util.Optional;
@@ -14,4 +14,5 @@ public interface MeasurementDAO {
 
     Optional<Measurement>selectMeasurementById(Integer id);
 
+    void insertMeasurement(Measurement measurement);
 }

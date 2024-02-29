@@ -4,8 +4,8 @@ package com.app.measurement.AccessService;
 
 
 import com.app.measurement.DAO.MeasurementDAO;
-import com.app.measurement.measurements.Measurement;
-import com.app.measurement.measurements.MeasurementRowMapper;
+import com.app.measurement.measurement.Measurement;
+import com.app.measurement.measurement.MeasurementRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -37,6 +37,8 @@ public class MeasurementJDBCDataAccessService implements MeasurementDAO {
         return jdbcTemplate.query(sql,measurementRowMapper);
     }
 
+
+
     @Override
     public Optional<Measurement> selectMeasurementById(Integer id) {
 
@@ -47,5 +49,25 @@ public class MeasurementJDBCDataAccessService implements MeasurementDAO {
         return jdbcTemplate.query(sql,measurementRowMapper,id)
                 .stream()
                 .findFirst();
+    }
+
+
+
+    @Override
+    public void insertMeasurement(Measurement measurement) {
+
+        var sql= """
+                INSERT INTO measurement(voltage,current)
+                values(?,?)
+                """;
+
+        int result = jdbcTemplate.update(
+                sql,
+                measurement.getVoltage(),
+                measurement.getCurrent());
+
+
+        System.out.println("result = " + result);
+
     }
 }
