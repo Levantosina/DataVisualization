@@ -50,7 +50,7 @@ public class ThingSpeakService {
             for (JsonNode entryNode : feedsNode) {
                 JsonNode field3Node = entryNode.path("field3");
                 JsonNode field4Node = entryNode.path("field4");
-             
+
                 if (!field3Node.isMissingNode() && !field4Node.isMissingNode()) {
                     String field3String = field3Node.asText();
                     String field4String = field4Node.asText();

@@ -1,5 +1,5 @@
 services:
-  db: 
+  db:
     container_name: measurements
     image: postgres
     environment:
@@ -23,5 +23,3 @@ networks:
 
 volumes:
   db:
-
-
