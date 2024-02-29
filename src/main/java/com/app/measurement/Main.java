@@ -27,8 +27,8 @@ public class Main {
             float voltage=220f;
 
             Measurement measurement=new Measurement(current,voltage);
-            measurementRepository.save(measurement);
-            System.out.println(measurement);
+            //measurementRepository.save(measurement);
+            //System.out.println(measurement);
             thingSpeakService.saveDataToDatabase();
 
         };

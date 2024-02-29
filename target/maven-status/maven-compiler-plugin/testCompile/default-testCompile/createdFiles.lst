@@ -1,5 +1,0 @@
-com\app\measurement\services\MeasurementServiceTest.class
-com\app\measurement\AccessService\TestContainersTest.class
-com\app\measurement\AccessService\MeasurementJDBCDataAccessServiceTest.class
-com\app\measurement\AccessService\AbstractTestContainers.class
-com\app\measurement\measurement\MeasurementRowMapperTest.class

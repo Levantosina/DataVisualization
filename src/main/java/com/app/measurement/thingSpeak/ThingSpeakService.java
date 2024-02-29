@@ -28,7 +28,7 @@ public class ThingSpeakService {
     }
 
     public String fetchDataFromThingSpeak() {
-        String fullUrl = "https://api.thingspeak.com/channels/2105786/fields/3,4.json?&results=100";
+        String fullUrl = "https://api.thingspeak.com/channels/2105786/fields/3,4.json?&results=1000";
         LOGGER.info("Fetching data from ThingSpeak. URL: " + fullUrl);
         String response = restTemplate.getForObject(fullUrl, String.class);
         LOGGER.info("ThingSpeak API Response: " + response);
@@ -50,9 +50,7 @@ public class ThingSpeakService {
             for (JsonNode entryNode : feedsNode) {
                 JsonNode field3Node = entryNode.path("field3");
                 JsonNode field4Node = entryNode.path("field4");
-                System.out.println("field3Node: " + field3Node);
-                System.out.println("field4Node: " + field4Node);
-
+             
                 if (!field3Node.isMissingNode() && !field4Node.isMissingNode()) {
                     String field3String = field3Node.asText();
                     String field4String = field4Node.asText();
@@ -62,7 +60,7 @@ public class ThingSpeakService {
                             Float field3Value = Float.parseFloat(field3String);
 
 
-                            Float field4Value = (field4String.equals("null")) ? null : Float.parseFloat(field4String);
+                            Float field4Value = Float.parseFloat(field4String);
 
 
                             field3Value = (field3Value == null) ? 0.0f : field3Value;
