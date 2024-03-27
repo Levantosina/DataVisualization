@@ -45,12 +45,12 @@ public class MeasurementService {
                                         formatted(id)));
     }
 
-    public void addMeasurement(MeasurementRegistrationRequest request) {
-
-        Measurement measurement=new Measurement(
-                request.voltage(),
-                request.current());
-        measurementDAO.insertMeasurement(measurement);
-
-    }
+//    public void addMeasurement(MeasurementRegistrationRequest request) {
+//
+//        Measurement measurement=new Measurement(
+//                request.voltage(),
+//                request.current());
+//        measurementDAO.insertMeasurement(measurement);
+//
+//    }
 }

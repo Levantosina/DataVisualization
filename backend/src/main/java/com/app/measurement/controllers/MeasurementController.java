@@ -33,9 +33,9 @@ public class MeasurementController {
         return measurementService.getMeasurement(measurementId);
     }
 
-    @PostMapping
-    public void registerMeasurement(
-            @RequestBody MeasurementRegistrationRequest measurementRegistrationRequest){
-        measurementService.addMeasurement(measurementRegistrationRequest);
-   }
+//    @PostMapping
+//    public void registerMeasurement(
+//            @RequestBody MeasurementRegistrationRequest measurementRegistrationRequest){
+//        measurementService.addMeasurement(measurementRegistrationRequest);
+//   }
 }
