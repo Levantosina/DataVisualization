@@ -30,6 +30,7 @@ public class Main {
             //measurementRepository.save(measurement);
             //System.out.println(measurement);
             thingSpeakService.saveDataToDatabase();
+
         };
     }
 }
