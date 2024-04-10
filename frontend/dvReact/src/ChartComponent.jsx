@@ -33,21 +33,22 @@ const ChartComponent = () => {
             const currentOptions = {
                 chart: {
                     type: 'line',
-                    height: 160
+                    height: 500
                 },
-                title:{
-                    text:"Current measurements",
+                title: {
+                    text: "Current measurements",
                     align: 'center'
                 },
                 series: [{
                     name: 'Current',
                     data: measurements.map(measurement => measurement.current),
-                    color: '#ff7f0e', // Set color for current line
+                    color: '#ff7f0e',
 
                 }],
                 xaxis: {
                     categories: measurements.map(measurement => measurement.timestamp)
-                }
+                },
+
             };
 
             currentChart = new ApexCharts(document.querySelector("#current-chart"), currentOptions);
@@ -56,20 +57,22 @@ const ChartComponent = () => {
             const voltageOptions = {
                 chart: {
                     type: 'line',
-                    height: 160
+                    height: 500
                 },
-                title:{
-                    text:"Voltage measurements",
+
+                title: {
+                    text: "Voltage measurements",
                     align: 'center'
                 },
                 series: [{
                     name: 'Voltage',
                     data: measurements.map(measurement => measurement.voltage),
-                    color: '#1f77b4' // Set color for voltage line
+                    color: '#1f77b4'
                 }],
                 xaxis: {
                     categories: measurements.map(measurement => measurement.timestamp)
-                }
+                },
+
             };
 
             voltageChart = new ApexCharts(document.querySelector("#voltage-chart"), voltageOptions);
