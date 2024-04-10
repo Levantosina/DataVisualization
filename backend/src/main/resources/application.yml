@@ -4,9 +4,15 @@ server:
     include-message: always
 
 cors:
-  allowed-origins: "*"
-  allowed-methods: "*"
+  allowed-origins:  "*"
+  allowed-methods:  "*"
 
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "health,info"
 spring:
   datasource:
     url: jdbc:postgresql://localhost:5333/measurements

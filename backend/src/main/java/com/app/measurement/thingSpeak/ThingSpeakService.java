@@ -28,7 +28,7 @@ public class ThingSpeakService {
     }
 
     public String fetchDataFromThingSpeak() {
-        String fullUrl = "https://api.thingspeak.com/channels/2105786/fields/3,4.json?&results=1000";
+        String fullUrl = "https://api.thingspeak.com/channels/2105786/fields/3,4.json?&results=2000";
         LOGGER.info("Fetching data from ThingSpeak. URL: " + fullUrl);
         String response = restTemplate.getForObject(fullUrl, String.class);
         LOGGER.info("ThingSpeak API Response: " + response);

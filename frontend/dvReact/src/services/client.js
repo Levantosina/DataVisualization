@@ -1,12 +1,12 @@
 import axios from 'axios';
 
-const getMeasurements = async () => {
+export const getMeasurements = async () => {
     try {
-        return await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/v1/measurements`)
+        return await axios.get(
+            `${import.meta.env.VITE_API_BASE_URL}/api/v1/measurements`
+        );
+    } catch (error) {
+        throw error;
     }
-    catch (e){
-        throw e;
-    }
-}
+};
 
-export default getMeasurements;

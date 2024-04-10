@@ -1,24 +1,12 @@
-import ChartComponent from './ChartComponent';
-import { useEffect } from 'react';
-import { getMeasurements } from "./services/client.js";
+import React from 'react';
 
-const Measurements = () => {
-
-    useEffect(() => {
-        getMeasurements()
-            .then(res => {
-                console.log(res);
-            })
-            .catch(err => {
-                console.log(err);
-            });
-    }, []);
-
+function Measurements({ current,voltage }) {
     return (
-        <div className="App">
-            <ChartComponent />
+        <div>
+            <p>Voltage: {voltage}</p>
+            <p>Current: {current}</p>
         </div>
     );
 }
 
-export default App;
+export default Measurements;
