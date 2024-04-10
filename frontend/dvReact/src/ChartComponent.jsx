@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import ApexCharts from 'apexcharts';
 import { getMeasurements } from './services/client.js';
-import {errorNotification} from "./services/notification.js"; // Importing the API function
+import { errorNotification } from "./services/notification.js"; // Importing the API function
 
 const ChartComponent = () => {
     const [measurements, setMeasurements] = useState([]);
@@ -10,47 +10,79 @@ const ChartComponent = () => {
 
     const fetchMeasurements = async () => {
         setLoading(true);
-        getMeasurements().then(res => {
+        try {
+            const res = await getMeasurements();
             setMeasurements(res.data);
-        }).catch(err => {
-            setError(err.response.data.message)
-            errorNotification(
-                err.code
-            )
-        }).finally(() => {
-            setLoading(false)
-        })
-    }
+        } catch (err) {
+            setError(err.response.data.message);
+            errorNotification(err.code);
+        } finally {
+            setLoading(false);
+        }
+    };
 
     useEffect(() => {
         fetchMeasurements();
-    }, [])
+    }, []);
 
     useEffect(() => {
-        let chart = null;
+        let currentChart = null;
+        let voltageChart = null;
 
         if (measurements.length > 0) {
-            const options = {
+            const currentOptions = {
                 chart: {
-                    type: 'line'
+                    type: 'line',
+                    height: 160
+                },
+                title:{
+                    text:"Current measurements",
+                    align: 'center'
                 },
                 series: [{
-                    name: 'Measurements',
-                    data: measurements.map(measurement => measurement.current)
+                    name: 'Current',
+                    data: measurements.map(measurement => measurement.current),
+                    color: '#ff7f0e', // Set color for current line
+
                 }],
                 xaxis: {
                     categories: measurements.map(measurement => measurement.timestamp)
                 }
             };
 
-            chart = new ApexCharts(document.querySelector("#chart"), options);
-            chart.render();
+            currentChart = new ApexCharts(document.querySelector("#current-chart"), currentOptions);
+            currentChart.render();
+
+            const voltageOptions = {
+                chart: {
+                    type: 'line',
+                    height: 160
+                },
+                title:{
+                    text:"Voltage measurements",
+                    align: 'center'
+                },
+                series: [{
+                    name: 'Voltage',
+                    data: measurements.map(measurement => measurement.voltage),
+                    color: '#1f77b4' // Set color for voltage line
+                }],
+                xaxis: {
+                    categories: measurements.map(measurement => measurement.timestamp)
+                }
+            };
+
+            voltageChart = new ApexCharts(document.querySelector("#voltage-chart"), voltageOptions);
+            voltageChart.render();
         }
 
         // Cleanup function
         return () => {
-            if (chart) {
-                chart.destroy();
+            if (currentChart) {
+                currentChart.destroy();
+            }
+            if (voltageChart) {
+                voltageChart.destroy();
             }
         };
     }, [measurements]);
@@ -63,7 +95,12 @@ const ChartComponent = () => {
         return <div>Error: {error}</div>;
     }
 
-    return <div id="chart" style={{ width: '100%', height: '400px' }}></div>;
+    return (
+        <div>
+            <div id="current-chart" style={{ width: '80%', height: '400px' }}></div>
+            <div id="voltage-chart" style={{ width: '80%', height: '400px' }}></div>
+        </div>
+    );
 }
 
 export default ChartComponent;
